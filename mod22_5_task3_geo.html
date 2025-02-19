@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MOD22.5 task 3 Размеры экрана и координаты пользователя</title>
+    <style>
+        #btn,
+        #infoScreen,
+        #infoGeolocation {
+            margin-block: 1rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <code>Сверстайте кнопку, клик на которую будет выводить на экран следующие данные:<br>
+            1. Размеры экрана пользователя (ширина и высота).<br>
+            2. Координаты местонахождения пользователя.<br>
+            Если пользователь отказался дать доступ к местоположению или данная функция недоступна в браузере, вывести вместо координат сообщение «Информация о местоположении недоступна».
+        </code>
+    </div>
+    <div>
+        <button id="btn">
+            Нажмите кнопку
+        </button>
+    </div>
+    <div id="infoScreen">
+
+    </div>
+    <div id="infoGeolocation">
+
+    </div>
+    <!-- infoGeolocation.innerHTML = 'Ваши координаты: ' + coords.latitude + ', ' + coords.longitude; -->
+    <script>
+        const btn = document.querySelector('#btn');
+        const infoScreen = document.querySelector('#infoScreen');
+        const infoGeolocation = document.querySelector('#infoGeolocation');
+        const infoScreenPrint = (message) => { infoScreen.innerHTML = message; };
+        const infoGeoPrint = (message) => { infoGeolocation.innerHTML = message; };
+
+        btn.addEventListener('click', () => {
+            // выводим праметры экрана пользователя
+            infoScreenPrint(`Размеры экрана пользователя: ${screen.width} x ${screen.height}`);
+
+            if ("geolocation" in navigator) {
+                /* местоположение доступно в браузере*/
+                navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                        const geotime = position.timestamp;
+                        const dateStr = (new Date(geotime)).toLocaleString();
+                        const { coords } = position;
+                        infoGeoPrint(`Координаты пользователя: ${coords.latitude}, ${coords.longitude} (${dateStr})`);
+                    },
+                    // обработка ошибок геолокации
+                    (error) => {
+                        // console.log(error);
+                        switch (error.code) {
+                            case error.PERMISSION_DENIED:
+                                infoGeoPrint("Ошибка. Разрешение на получение местоположения отклонено пользователем.");
+                                break;
+                            case error.POSITION_UNAVAILABLE:
+                                infoGeoPrint("Ошибка. Информация о местоположении недоступна.");
+                                break;
+                            case error.TIMEOUT:
+                                infoGeoPrint("Ошибка. Время запроса местоположения истекло.");
+                                break;
+                            case error.UNKNOWN_ERROR:
+                                infoGeoPrint("Ошибка. Произошла неизвестная ошибка.");
+                                break;
+                        }
+                    },
+                    { timeout: 3000 } //Таймаут определения ошибки в мс
+                );
+            } else {
+                /* местоположение недоступно */
+                infoGeoPrint('Информация о местоположении недоступна');
+            }
+
+        })
+
+
+    </script>
+</body>
+
+</html>

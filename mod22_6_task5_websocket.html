@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Модуль 22. Задание №5.</title>
+    <link rel="stylesheet" href="mod22_6_task5_websocket.css" />
+</head>
+<body>
+    <code>
+    Модуль 22. Задание 5.<br>
+    <br>
+    1. Реализовать чат на основе эхо-сервера wss://echo-ws-service.herokuapp.com/<br>
+    Интерфейс состоит из input, куда вводится текст сообщения, и кнопки «Отправить». При клике на кнопку «Отправить» сообщение должно появляться в окне переписки. Эхо-сервер будет отвечать вам тем же сообщением, его также необходимо выводить в чат.<br>
+    <br>
+    2. Добавить в чат механизм отправки гео-локации:<br>
+    При клике на кнопку «Гео-локация» необходимо отправить данные серверу и в чат вывести ссылку на https://www.openstreetmap.org/ с вашей гео-локацией. Сообщение, которое отправит обратно эхо-сервер, не выводить.<br>
+    </code>
+
+    <div id="chatCanvas">
+        <div id="chatStatus">Чат с эхо-сервером</div>
+        <div id="chatBody">
+            <div id="chatMessages">
+            </div>
+        </div>
+        <div id="chatControl">
+            <input type="text" id="chatInputText" placeholder="Введите сообщение" value="Очень длинное сообщение, состоящее из нескольких предложений. Каждое из которых тоже не короткое.">
+            <button id="chatSendMessage">Отправить</button>
+            <button id="chatSendGeo">Моя геометка</button>
+        </div>
+    </div>
+<script src="mod22_6_task5_websocket.js"></script>
+</body>
+</html>
+

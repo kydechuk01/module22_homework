@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Практика SVG</title>
+    <style>
+        /* константы для управления размерами полотен и полос флагов */
+        :root {
+            --flag_magnify: 1.5; /* множитель размера флага */
+            --flag_width: calc(180px * var(--flag_magnify));
+            --flag_height: calc(120px * var(--flag_magnify));
+            --stripe_v3h: calc(var(--flag_height)/3);
+            --stripe_h3v: calc(var(--flag_width)/3);
+        }
+        /* параметры полотна */
+        .flag {
+            width: var(--flag_width);
+            height: var(--flag_height);
+            border: 1px solid silver;
+            background-color: white;
+            box-shadow: 5px 5px 6px rgba(0, 0, 0, 0.2);
+        } 
+
+        /* цвета элементов */
+        .svg_red { fill: red; }
+        .svg_blue { fill: blue; }
+        .svg_white { fill: white; }
+
+        /* ширина полосы на флагах с горизонтальными полосами */
+        .flag_hor_stripe {
+            width: 100%;
+        }
+        /* высота полосы на флагах с вертикальными полосами */
+        .flag_ver_stripe {
+            height: 100%;
+        }
+        /* адаптация ширины и высоты полос для флагов с вертикальной и горизонтальной ориентацией */
+        .flag_v3s { height: var(--stripe_v3h); }
+        .flag_h3s { width: var(--stripe_h3v); }
+
+        /* полная заливка фона для флагов */
+        .fullflag {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* разметка расположения полос для флагов с горизонтальными полосами */        
+        .stripe_v31 {
+            x: 0; y: 0;
+        }
+        .stripe_v32 {
+            x: 0; y: var(--stripe_v3h);
+        }
+        .stripe_v33 {
+            x: 0; y: calc(var(--flag_height) - var(--stripe_v3h));
+        }
+        /* разметка расположения полос для флагов с вертикальными полосами */
+        .stripe_h31 {
+            x: 0; y: 0;
+        }
+        .stripe_h32 {
+            x: var(--stripe_h3v); y: 0;
+        }
+        .stripe_h33 {
+            x: calc(var(--flag_width) - var(--stripe_h3v)); y: 0;
+        }
+        /* японское солнце */
+        .sun {
+            cx: calc(var(--flag_width) / 2);
+            cy: calc(var(--flag_height) /2);
+            r: calc(var(--flag_height) * 0.3);
+        }
+
+        /* кресты для швейцарского флага */
+        .cross_vert {
+            x: 42%;
+            y: 15%;
+            width: 16%;
+            height: 70%;
+        }
+        .cross_horiz {
+            x: 20%;
+            y: 40%;
+            width: 60%;
+            height: 20%;
+        }
+        /* кресты для финского флага */
+        .fin_cross_vert {
+            x: 20%;
+            y: 0;
+            width: 15%;
+            height: 100%;
+        }
+        .fin_cross_horiz {
+            x: 0;
+            y: 38%;
+            width: 100%;
+            height: 24%;
+        }
+    </style>
+</head>
+<body>
+    <code>Задание:<br>
+        Изобразить с помощью элементов SVG флаги пяти стран: Россия, Франция, Финляндия, Швейцария, Япония.<br>
+        Каждый SVG-элемент с флагом должен иметь размер 180 на 120 пикселей.
+    </code>
+    <h3>Россия</h3>
+    <svg class="flag">        
+        <rect class="flag_hor_stripe stripe_v31 flag_v3s svg_white"></rect>
+        <rect class="flag_hor_stripe stripe_v32 flag_v3s svg_blue"></rect>
+        <rect class="flag_hor_stripe stripe_v33 flag_v3s svg_red"></rect>
+    </svg>
+
+    <h3>Франция</h3>
+    <svg class="flag">
+        <rect class="flag_ver_stripe stripe_h31 flag_h3s svg_blue"></rect>
+        <rect class="flag_ver_stripe stripe_h32 flag_h3s svg_white"></rect>
+        <rect class="flag_ver_stripe stripe_h33 flag_h3s svg_red"></rect>
+    </svg>
+
+    <h3>Швейцария</h3>
+    <svg class="flag">
+        <rect class="fullflag svg_red"></rect>
+        <rect class="cross_vert svg_white"></rect>
+        <rect class="cross_horiz svg_white"></rect>
+    </svg>
+        
+    <h3>Финляндия</h3>
+    <svg class="flag">
+        <rect class="fullflag svg_white"></rect>
+        <rect class="fin_cross_vert svg_blue"></rect>
+        <rect class="fin_cross_horiz svg_blue"></rect>
+    </svg>
+        
+    <h3>Япония</h3>
+    <svg class="flag">
+        <rect class="fullflag svg_white"></rect>
+        <circle class="sun svg_red"></circle>
+    </svg>
+
+</body>
+</html>

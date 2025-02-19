@@ -1,0 +1,96 @@
+#chatCanvas {
+    margin-top: 1em;
+    padding: 5px;
+    padding-inline: 0.7em;
+    border: 0;
+    width: 50%;
+    min-width: 25em;
+    background-color: rgba(238, 205, 17, 0.585);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#chatBody {
+    min-height: 50px;
+    background-color: white;
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+}
+
+#chatStatus {
+    min-height: 1.3em;
+    padding: 5px;
+    margin-bottom: 5px;
+    color: black;
+    font-size: 14px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#chatControl {
+    min-height: 2em;
+    padding-block: 0.5em;
+    padding-top: 1.5em;
+    display: flex;
+    align-items: center;
+    justify-content: stretch;
+}
+
+#chatInputText {
+    flex-grow: 1;
+    padding: 5px;
+    min-width: 10em;
+}
+
+.message {
+    padding: 0.6em;
+    margin-bottom: 0.7em;
+    border: 1px solid rgba(172, 232, 236, 0.585);
+    border-radius: 5px;
+    /* background-color: rgba(172, 232, 236, 0.285); */
+    min-width: 5em;
+    max-width: 60%;
+    align-self: flex-end;
+}
+
+.message.remote {
+    align-self: flex-start;
+    background-color: rgba(15, 209, 235, 0.05);
+}
+.message.local {
+    align-self: flex-end;
+    background-color: rgba(16, 234, 63, 0.05);
+}
+
+#chatMessages {
+    border: 0px;
+    display: flex;
+    flex-direction: column;
+    padding: 1em;
+    /* максвысота чат окна в 40% экрана */
+    max-height: 40vh;
+    /* прокрутка сообщений появляется только при необходимости */
+    overflow-y: auto;
+}
+
+#chatInputText {
+    height: 2.4em;
+    border: 0px;
+    border-radius: 5px;
+    padding-inline: 1em;
+}
+
+#chatSendMessage, #chatSendGeo {
+    
+    background-color: rgba(242, 215, 62, 1);
+    border: none;
+    cursor: pointer;
+    min-width: 7em;
+    height: 2.4em;
+    margin-inline: 0.5em;
+    white-space: nowrap;
+}
+
+#chatSendMessage:hover, #chatSendGeo:hover {
+    background-color: rgb(252, 252, 94);
+    
+}

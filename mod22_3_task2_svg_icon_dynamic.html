@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>22.3 task 2: SVG icon change</title>
+    <style>
+        h2 {
+            margin-bottom: 1em
+        }
+
+        /* оформление кнопки */
+        .btn {
+            cursor: pointer;
+            display: flex;
+            width: 19em;
+            padding: 10px 20px 8px;
+            background-color: rgb(80, 127, 236);
+            color: white;
+            border: 0;
+            border-radius: 3px;
+
+        }
+
+        .btn_label {
+            margin-right: 10px;
+        }
+
+        .btn_icon {
+            padding-inline: 10px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <h2>
+        <code>Задание 22.3 Динамическая смена иконки на кнопке после нажатия</code>
+    </h2>
+    <div>
+        <button class="btn">
+            <div class="btn_icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-arrow-clockwise" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2z" />
+                    <path
+                        d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466" />
+                </svg>
+            </div>
+            <div class="btn_label">ЗАПРОСИТЬ ДАННЫЕ</div>
+        </button>
+    </div>
+    <script>
+        // код иконки на активной кнопке
+        const btn_svgico_active = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-left-circle-fill" viewBox="0 0 16 16"><path d="M16 8A8 8 0 1 0 0 8a8 8 0 0 0 16 0m-5.904-2.803a.5.5 0 1 1 .707.707L6.707 10h2.768a.5.5 0 0 1 0 1H5.5a.5.5 0 0 1-.5-.5V6.525a.5.5 0 0 1 1 0v2.768z"/></svg>`;
+
+        // код иконки на неактивной кнопке
+        const btn_svgico_inactive = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-left-circle" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-5.904-2.854a.5.5 0 1 1 .707.708L6.707 9.95h2.768a.5.5 0 1 1 0 1H5.5a.5.5 0 0 1-.5-.5V6.475a.5.5 0 1 1 1 0v2.768z"/></svg>`;
+
+        const btnLabelActiveText = 'Идет запрос данных...';
+        const btnLabelInactiveText = 'ЗАПРОСИТЬ ДАННЫЕ';
+
+        const btnTest = document.querySelector('.btn');
+        const btnTestLabel = document.querySelector('.btn_label');
+        const btnTestIcon = document.querySelector('.btn_icon');
+
+        let btnTestIsActive = false;
+
+        function btnSetActive() {
+            btnTestIcon.innerHTML = btn_svgico_active;
+            btnTestLabel.innerHTML = btnLabelActiveText;
+        }
+
+        function btnSetInactive() {
+            btnTestIcon.innerHTML = btn_svgico_inactive;
+            btnTestLabel.innerHTML = btnLabelInactiveText;
+        }
+
+        btnTest.addEventListener('click', () => {
+            if (btnTestIsActive) {
+                btnSetInactive()
+            }
+            else {
+                btnSetActive()
+                // создаем задержку 1 секунды на сброс состояния кнопки
+                setTimeout(() => {
+                    btnTestIsActive = false;
+                    btnSetInactive()
+                    console.log('прошла 1 секунда, сбрасываем кнопку');
+                }, 1000);
+            };
+
+            btnTestIsActive = !btnTestIsActive;
+        }
+        )       
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MOD22.5 task 4 Определение локального времени пользователя через Timezone API</title>
+    <style>
+        #btn,
+        #infoScreen,
+        #infoGeolocation {
+            margin-block: 1rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <code>
+            Cверстайте кнопку, по клику на которую будет отправляться запрос к Timezone API. В запросе нужно отправить координаты местоположения пользователя, полученные с помощью Geolocation API. В ответ на запрос придёт объект, из которого нужно вывести на экран следующую информацию:
+            <br>
+            <ul>
+                <li>временная зона, в которой находится пользователь: параметр timezone;</li>
+                <li>местные дата и время: параметр date_time_txt.</li>
+            </ul>            
+            
+        </code>
+    </div>
+    <div>
+        <button id="btn">
+            Нажмите кнопку
+        </button>
+    </div>
+    <div id="infoTimezone"></div>
+    <div id="infoLocaldate"></div>
+    <!-- infoGeolocation.innerHTML = 'Ваши координаты: ' + coords.latitude + ', ' + coords.longitude; -->
+    <script src="mod22_5_task4_geo.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,23 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Практика Canvas</title>
+</head>
+<body>
+    <canvas id="canvas" width=400 height=400></canvas>
+
+<script>
+canvas = document.querySelector('#canvas');
+const ctx = canvas.getContext("2d");
+
+ctx.beginPath(); // Создаёт новый контур
+ctx.moveTo(100,0); // Перемещает перо в точку с координатами x и y
+ctx.lineTo(180,180); // Рисует линию с текущей позиции до позиции, определённой x и y
+ctx.lineTo(20,180);
+ctx.fillStyle = "green"; // Заливаем выбранным цветом фигуру
+ctx.fill(); // Рисует фигуру с заливкой внутренней области.
+</script>
+</body>
+</html>
